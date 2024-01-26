@@ -1,0 +1,9 @@
+
+
+# Criar a imagem Docker
+docker build -t pellizzi-terraform-image:invest_model .
+
+
+# Criar o container Docker
+docker run -dit --name pellizzi-invest_model -v C:\Users\pellizzi\Documents\projetos_iac\modelo_investimento\IaC:/iac pellizzi-terraform-image:invest_model /bin/bash
+

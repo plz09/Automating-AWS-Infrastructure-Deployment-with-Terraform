@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Pellizzi - Modelo de Previsão de Investimento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #003366;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        section {
+            padding: 20px;
+            text-align: center;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #003366;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        {% if prediction_text %}
+        .prediction {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            {% if prediction_text == "Não fará um novo investimento" %}
+                background-color: #d9534f; /* Vermelho */
+                border: 1px solid #d43f3a;
+                color: #fff;
+            {% else %}
+                background-color: #dff0d8; /* Verde (ou outra cor) */
+                border: 1px solid #3c763d;
+                color: #000;
+            {% endif %}
+        }
+        {% endif %}
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Banco Pellizzi</h1>
+    </header>
+
+    <section>
+        <h2>Modelo de Previsão de Investimento</h2>
+
+        <form action="/predict" method="post">
+            <label for="feature1">Valor do investimento 1:</label>
+            <input type="text" id="feature1" name="feature1" required><br>
+
+            <label for="feature2">Valor do investimento 2:</label>
+            <input type="text" id="feature2" name="feature2" required><br>
+
+            <label for="feature3">Valor do investimento 3:</label>
+            <input type="text" id="feature3" name="feature3" required><br>
+
+            <label for="feature4">Valor do investimento 4:</label>
+            <input type="text" id="feature4" name="feature4" required><br>
+
+            <button type="submit">Prever</button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="prediction">
+            <p>{{ prediction_text }}</p>
+        </div>
+        {% endif %}
+    </section>
+
+</body>
+
+</html>
